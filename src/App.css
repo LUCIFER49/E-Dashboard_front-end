@@ -80,7 +80,12 @@
   margin-left: 20px;
 }
 
-
+.invalidDetail {
+  color: red;
+  margin-top: -20px;
+  display: block;
+  margin-left: 20px;
+}
 
 
 @media (prefers-reduced-motion: no-preference) {
