@@ -8,8 +8,8 @@ const AddProduct = () => {
     const [error, setError] = useState(false);
 
     const addProduct = async () => {
-
-        if(!name || !price || !category || !company) {
+        //fields will return true on if the fields are empty otherwise they will return false
+        if(!name || !price || !category || !company) {                   
             setError(true); 
         }
 
@@ -29,13 +29,16 @@ const AddProduct = () => {
         <div className='product'>
             <h1>Add Product</h1>
             <input type="text" placeholder='Enter Product Name' className='inputField' value={name} onChange={(e) => {setName(e.target.value)}} />
-            { error && <span className='invalidDetail'>Please Enter Valid Name</span> }
+            { error && !name &&  <span className='invalidDetail'>Please Enter Valid Name</span> }
 
             <input type="text" placeholder='Enter Product Price' className='inputField' value={price} onChange={(e) => {setPrice(e.target.value)}} />
+            { error && !price && <span className='invalidDetail'>Please Enter Valid Price</span> }
 
             <input type="text" placeholder='Enter Product Category' className='inputField' value={category} onChange={(e) => {setCategory(e.target.value)}} />
+            { error && !category && <span className='invalidDetail'>Please Enter Valid Category</span>}
 
             <input type="text" placeholder='Enter Product Company' className='inputField' value={company} onChange={(e) => {setCompany(e.target.value)}} />
+            { error && !company && <span className='invalidDetail'>Please Enter Valid Company</span> }
 
             <button onClick={addProduct} className='productButton' >Add Product</button>
         </div>
