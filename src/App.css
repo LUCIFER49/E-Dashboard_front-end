@@ -72,6 +72,15 @@
   cursor: pointer;
 }
 
+.updateButton {
+  margin: 25px;
+  padding: 10px;
+  width: 150px;
+  background-color: skyblue;
+  border: 1px solid;
+  cursor: pointer;
+}
+
 .logo {
   width: 43px;
   float: left;
