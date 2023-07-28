@@ -25,9 +25,23 @@ const ProductsList = () => {
     }
   };
 
+  const searchHandle = async (event) => {
+    let key = event.target.value;
+    if(key){
+      let result = await fetch (`http://localhost:5000/search/${key}`);
+      result = await result.json();
+      if(result){
+        setProducts(result)
+      }
+    } else {
+       getProducts();
+    }
+  }
+
   return (
     <div className="product-list">
       <h1>Products List</h1>
+      <input type="text" placeholder="Search Products" className="searchBar" onChange={searchHandle}/>
       <ul>
         <li>Sr. No.</li>
         <li>Name</li>
@@ -37,21 +51,25 @@ const ProductsList = () => {
         <li>Operation</li>
       </ul>
 
-      {products.map((item, index) => (
-        <ul key={item}>
-          <li>{index + 1}</li>
-          <li>{item.name}</li>
-          <li>$ {item.price}</li>
-          <li>{item.category}</li>
-          <li>{item.company}</li>
-          <li>
-            <button onClick={() => deleteProduct(item._id)}>Delete</button>
-            <Link to={'/update/'+item._id}>
-              <button>Update</button>
-            </Link>
-          </li>
-        </ul>
-      ))}
+      {
+        products.length> 0 ? products.map((item, index) => (
+          <ul key={item}>
+            <li>{index + 1}</li>
+            <li>{item.name}</li>
+            <li>$ {item.price}</li>
+            <li>{item.category}</li>
+            <li>{item.company}</li>
+            <li>
+              <button onClick={() => deleteProduct(item._id)}>Delete</button>
+              <Link to={'/update/'+item._id}>
+                <button>Update</button>
+              </Link>
+            </li>
+          </ul>
+        ))
+        :
+        <h1>NO RESULT FOUND!!</h1>
+      }
     </div>
   );
 };
