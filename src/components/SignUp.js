@@ -12,10 +12,10 @@ const SignUp = () => {
       if(auth){
           navigate('/')
       }
-  }, [])
+  })
 
   const collectData = async () => {
-    console.warn(name, email, password);
+    // console.warn(name, email, password);
     let result = await fetch("http://localhost:5000/register", {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
@@ -24,7 +24,7 @@ const SignUp = () => {
       },
     });
     result = await result.json();
-    console.warn(result);
+    // console.warn(result);
     localStorage.setItem("user", JSON.stringify(result.userDetails));
     localStorage.setItem("token", JSON.stringify(result.auth))
     if (result) {

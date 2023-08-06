@@ -11,6 +11,7 @@ const AddProduct = () => {
     //fields will return true on if the fields are empty otherwise they will return false
     if (!name || !price || !category || !company) {
       setError(true);
+      return false
     }
 
     const userId = JSON.parse(localStorage.getItem("user"))._id;
@@ -19,6 +20,7 @@ const AddProduct = () => {
       body: JSON.stringify({ name, price, category, company, userId }),
       headers: {
         "Content-Type": "application/json",
+        authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
       },
     });
     result = await result.json();

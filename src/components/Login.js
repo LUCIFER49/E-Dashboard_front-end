@@ -11,10 +11,10 @@ const Login = () => {
     if (auth) {
       navigate("/");
     }
-  }, []);
+  });
 
   const handleLogin = async () => {
-    console.warn(email, password);
+    // console.warn(email, password);
     let result = await fetch("http://localhost:5000/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
@@ -23,7 +23,7 @@ const Login = () => {
       },
     });
     result = await result.json();
-    console.warn(result);
+    // console.warn(result);
     if (result.auth) {
       localStorage.setItem("user", JSON.stringify(result.user));
       localStorage.setItem("token", JSON.stringify(result.auth));
